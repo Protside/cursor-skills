@@ -1,0 +1,17 @@
+# Environment and secret files
+.env
+.env.*
+oauth-client.json
+token-*.json
+credentials.json
+client_secret*.json
+secrets/
+credentials/
+
+# Python generated files
+__pycache__/
+*.pyc
+
+# Operating system files
+.DS_Store
+Thumbs.db
