@@ -1,0 +1,24 @@
+---
+description: Enforce repository-first development and deployment for personal Cursor skills
+alwaysApply: true
+---
+
+# Repository-First Skill Development
+
+- Treat `skills/<skill-name>/` as the only canonical source for every skill.
+- Treat `%USERPROFILE%\.cursor\skills\` as an installed runtime/testing copy.
+- Never make permanent skill changes in the global runtime directory.
+- Create and edit skill files only under this repository's `skills/` directory.
+- Deploy repository versions for local testing with `.\install.ps1`.
+- When testing fails, fix the repository copy, reinstall, and retest.
+- Commit and push to `origin/main` only after testing and QA pass.
+- Treat `origin/main` as the latest approved, backed-up, synchronized version.
+- On other computers, use `git pull` followed by `.\install.ps1`.
+- Never manually synchronize global skill folders when Git is available.
+- Keep tokens, client secrets, API keys, passwords, `.env` secrets,
+  machine-local authentication, credential directories, caches,
+  `__pycache__/`, and `*.pyc` out of Git.
+- Keep Excel Google credentials machine-local at
+  `%LOCALAPPDATA%\CursorExcelSkill\google\`.
+
+See `WORKFLOW.md` for the complete lifecycle and commands.
