@@ -2,8 +2,8 @@
 
 Reusable Agent Skills for Cursor and Cursor AI. This collection helps an AI
 agent perform structured, repeatable work and synchronize the same skills
-between machines, starting with production-oriented Excel, XLSX, Google Sheets,
-and spreadsheet automation workflows.
+between machines, starting with Excel, XLSX, Google Sheets, and spreadsheet
+automation workflows.
 
 ## Available Skills
 
@@ -13,16 +13,17 @@ and spreadsheet automation workflows.
 
 The `/excel` skill covers:
 
-- XLSX creation and editing with safe handling of existing spreadsheets
+- agent-guided XLSX creation and preservation-focused editing workflows
 - Microsoft Excel Desktop recalculation through COM on Windows
-- structural workbook inspection and validation
-- rendered PDF-to-image visual QA
+- structural and stored-content workbook inspection and validation
+- PDF-to-image rendering followed by visual inspection
 - formulas, Excel Tables, data validation, dropdowns, and checkboxes
 - charts, dashboards, and financial or accounting workbooks
 - official Google Sheets API integration with read-back verification
 
 Platform-dependent capabilities are used only when their required software and
-configuration are available.
+configuration are available. The skill documents safety and QA workflows; it
+does not guarantee preservation of every advanced spreadsheet feature.
 
 ## Installation
 
@@ -41,7 +42,9 @@ The script discovers each directory under `skills/` and installs it into:
 ```
 
 Cursor should then discover `/excel`. Runtime dependencies for specific
-features may need to be installed separately.
+features may need to be installed separately. The installer updates and
+overwrites deployed files but does not remove stale runtime files that were
+deleted from the repository.
 
 ## Updating
 
@@ -74,11 +77,13 @@ formulas, and charts.
 
 ## Excel / XLSX support
 
-Python and `openpyxl` handle workbook structure, creation, editing, inspection,
-and validation. On Windows, Microsoft Excel Desktop can provide authoritative
-compatibility checks, formula recalculation, and PDF rendering through COM.
-Those Excel-native QA capabilities require Windows, Microsoft Excel Desktop,
-and `pywin32`.
+The agent can use Python and `openpyxl` for workbook authoring and
+preservation-focused edits. Included command-line tools inspect and validate
+workbook structure and stored content; `openpyxl` does not recalculate formulas
+and may not preserve every advanced Excel feature. On Windows, Microsoft Excel
+Desktop can provide authoritative compatibility checks, formula recalculation,
+and PDF rendering through COM. Those Excel-native QA capabilities require
+Windows, Microsoft Excel Desktop, and `pywin32`.
 
 ## Google Sheets support
 
@@ -92,12 +97,12 @@ repository, and must be configured separately on each computer.
 The core skill consists of Markdown instructions, references, and Python
 scripts. Install runtime dependencies only for the capabilities you use:
 
-- `openpyxl` — XLSX inspection, editing, and structural validation
+- `openpyxl` — XLSX authoring, inspection, and structural validation
 - `pywin32` — Excel COM recalculation and PDF export on Windows
 - `PyMuPDF` — rendering PDF pages to images for visual QA
 - `google-api-python-client` — Google Sheets API operations
 - `google-auth`, `google-auth-oauthlib`, and `google-auth-httplib2` — Google
-  OAuth authentication and authorized API transport
+  OAuth and official Google client transport stack
 - Microsoft Excel Desktop — Excel-native compatibility, recalculation, and
   rendering QA
 
