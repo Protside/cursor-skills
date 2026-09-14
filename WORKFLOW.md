@@ -106,7 +106,8 @@ Authentication and machine-specific configuration remain local to each
 computer. Excel skill Google credentials remain outside Git at:
 
 ```text
-%LOCALAPPDATA%\CursorExcelSkill\google\
+Windows: %LOCALAPPDATA%\CursorExcelSkill\google\
+Linux/macOS: ${XDG_DATA_HOME:-$HOME/.local/share}/CursorExcelSkill/google/
 ```
 
 Software dependencies such as Python packages may need separate installation on
