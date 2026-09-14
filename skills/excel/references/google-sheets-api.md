@@ -39,10 +39,12 @@ Service accounts are not the default user workflow.
 User-local storage:
 
 ```text
-%LOCALAPPDATA%\CursorExcelSkill\google\
+Windows: %LOCALAPPDATA%\CursorExcelSkill\google\
+Linux/macOS: ${XDG_DATA_HOME:-$HOME/.local/share}/CursorExcelSkill/google\
+
 ├── oauth-client.json
 ├── token-sheets-readonly.json
-└── token-sheets-readwrite.json   # future write integration only
+└── token-sheets-readwrite.json   # write integration
 ```
 
 - `oauth-client.json` is the OAuth Desktop client configuration downloaded
@@ -258,9 +260,10 @@ Google package is required merely to read this architecture or run CLI help.
    - add the user as a test user if the app remains in External testing mode.
 5. Create an OAuth client ID with application type **Desktop app**.
 6. Download the client JSON manually.
-7. Create `%LOCALAPPDATA%\CursorExcelSkill\google\`.
-8. Save the downloaded file as
-   `%LOCALAPPDATA%\CursorExcelSkill\google\oauth-client.json`.
+7. Create the user-local credential directory:
+   Windows `%LOCALAPPDATA%\CursorExcelSkill\google\`, or
+   Linux/macOS `${XDG_DATA_HOME:-$HOME/.local/share}/CursorExcelSkill/google/`.
+8. Save the downloaded file as `oauth-client.json` in that directory.
 9. Install the official Python dependencies listed above.
 10. Run `google_auth.py --authorize-readonly` for inspection-only work, or
     `google_auth.py --authorize-readwrite` for an explicitly requested write

@@ -33,12 +33,21 @@ def configure_utf8_output() -> None:
 
 def google_storage_directory() -> Path:
     local_app_data = os.environ.get("LOCALAPPDATA")
-    if not local_app_data:
-        raise GoogleAuthError(
-            "LOCALAPPDATA is unavailable. A user-local Google credential "
-            "directory cannot be determined safely."
-        )
-    return Path(local_app_data) / "CursorExcelSkill" / "google"
+    if local_app_data:
+        return Path(local_app_data) / "CursorExcelSkill" / "google"
+
+    xdg_data_home = os.environ.get("XDG_DATA_HOME")
+    if xdg_data_home:
+        return Path(xdg_data_home) / "CursorExcelSkill" / "google"
+
+    home = os.environ.get("HOME")
+    if home:
+        return Path(home) / ".local" / "share" / "CursorExcelSkill" / "google"
+
+    raise GoogleAuthError(
+        "Neither LOCALAPPDATA nor HOME is available. A user-local Google "
+        "credential directory cannot be determined safely."
+    )
 
 
 def oauth_client_path() -> Path:
